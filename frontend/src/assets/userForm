@@ -1,0 +1,101 @@
+<div class="container mt-3">
+
+  <form [formGroup]="userService.form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="example-container">
+      <!-- primary id input -->
+      <input type="hidden" formControlName="id">
+
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <!-- firstName input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="First Name" formControlName="firstName">
+            <mat-hint>Eg. John</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['firstName'].valid && userService.form.controls['firstName'].touched">
+              {{ getErrorFirstName() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- lastName input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Last Name" formControlName="lastName">
+            <mat-hint>Eg. Doe</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['lastName'].valid && userService.form.controls['lastName'].touched">
+              {{ getErrorLastName() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- emailId input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Email Address" formControlName="emailId">
+            <mat-hint>Eg. example@example.com</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['emailId'].valid && userService.form.controls['emailId'].touched">
+              {{ getErrorEmail() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- password input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-hint>Choose a password of at least 6 character, one number, symbol, uppercase & lowercase letter.
+            </mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['password'].valid && userService.form.controls['password'].touched">
+              {{ getErrorPassword() }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <!-- contact input -->
+          <mat-form-field class="form-element">
+            <span matPrefix>+91 &nbsp;</span>
+            <input matInput placeholder="Contact" formControlName="contact">
+            <mat-hint>Eg. 8888888888</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['contact'].valid && userService.form.controls['contact'].touched">
+              {{ getErrorContact() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- gender input -->
+          <div class="d-flex form-element">
+            <label class="label-text">Gender:<sup class="text-danger font-weight-bold">*</sup> </label>
+            <div class="d-flex flex-column">
+              <mat-radio-group aria-label="Select an option" formControlName="gender">
+                <ng-container *ngFor="let g of gender">
+                  <mat-radio-button [value]="g">{{ g | titlecase }}</mat-radio-button>
+                </ng-container>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <!-- role input -->
+          <mat-form-field class="form-element">
+            <mat-select placeholder="Role" formControlName="role">
+              <mat-option value="null" [disabled]="'true'">Select</mat-option>
+              <ng-container *ngFor="let role of roles">
+                <mat-option [value]="role">{{ role | titlecase }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="!userService.form.controls['role'].valid && userService.form.controls['role'].touched">
+              {{ getErrorRole() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- submit & reset button -->
+          <div class="button-row">
+            <button mat-raised-button class="mr-10" color="primary" type="submit"
+              [disabled]="userService.form.invalid">{{userService.form.controls['id'].value?"Update":"Add"}}</button>
+            <button mat-raised-button class="mr-10" color="warn" (click)="onClear()"
+              [hidden]="userService.form.controls['id'].value">Clear</button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </form>
+</div>

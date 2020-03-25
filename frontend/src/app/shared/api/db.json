@@ -1,0 +1,311 @@
+{
+  "users": [
+    {
+      "id": 2,
+      "firstName": "rupesh",
+      "lastName": "bhagat",
+      "emailId": "rupeshb@gmail.com",
+      "password": "Rupesh@123",
+      "contact": 9999999999,
+      "gender": "male",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "firstName": "panchashil",
+      "lastName": "wankhede",
+      "emailId": "panchashilw@gmail.com",
+      "password": "Panchashil@123",
+      "contact": 7777777777,
+      "gender": "male",
+      "role": "trainer"
+    },
+    {
+      "id": 4,
+      "firstName": "balu",
+      "lastName": "kamble",
+      "emailId": "balu@gmail.com",
+      "password": "Balu@123",
+      "contact": "7417417417",
+      "gender": "male",
+      "role": "trainer"
+    }
+  ],
+  "exams": [
+    {
+      "id": 1,
+      "examCode": 1,
+      "examName": "angular",
+      "examStatus": false
+    },
+    {
+      "id": 3,
+      "examCode": 3,
+      "examName": "java",
+      "examStatus": true
+    },
+    {
+      "examCode": 4,
+      "examName": "php",
+      "examStatus": false,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "examCode": 5,
+      "examName": "python",
+      "examStatus": true
+    }
+  ],
+  " ": [
+    {
+      "id": 1,
+      "examCode": 1,
+      "question": "The . . . . . decorator allows us to define the pipe name that is globally available for use in any template in the across application.",
+      "a": "pipeName",
+      "b": "pipeDeco",
+      "c": "Pipe",
+      "d": "None",
+      "answer": "c"
+    },
+    {
+      "id": 2,
+      "examCode": 1,
+      "question": "Where would you put it?",
+      "a": "In the Component",
+      "b": "In the Template",
+      "c": "In the Injectable decorator",
+      "d": "In the module",
+      "answer": "b"
+    },
+    {
+      "id": 3,
+      "examCode": 3,
+      "question": "Which of the following can be operands of arithmetic operators?",
+      "a": "Numeric",
+      "b": "Boolean",
+      "c": "Characters",
+      "d": "Both Boolean & Characters",
+      "answer": "d"
+    },
+    {
+      "id": 4,
+      "examCode": 3,
+      "question": "Decrement operator, –, decreases value of variable by what number?",
+      "a": "1",
+      "b": "2",
+      "c": "3",
+      "d": "4",
+      "answer": "a"
+    },
+    {
+      "id": 5,
+      "examCode": 1,
+      "question": "Which file is responsible for startup of angular 2 project ?",
+      "a": "main.ts",
+      "b": "index.js",
+      "c": "app.ts",
+      "d": "angular.cli.json",
+      "answer": "b"
+    },
+    {
+      "id": 6,
+      "examCode": 3,
+      "question": "Which data type value is returned by all transcendental math functions?",
+      "a": "int",
+      "b": "float",
+      "c": "double",
+      "d": "long",
+      "answer": "c"
+    }
+  ],
+  "vouchers": [
+    {
+      "id": 1,
+      "voucherCode": "CfKRLr",
+      "status": false
+    },
+    {
+      "id": 2,
+      "voucherCode": "RRIQ3s",
+      "status": false
+    },
+    {
+      "id": 3,
+      "voucherCode": "MmaFrD",
+      "status": true
+    },
+    {
+      "id": 4,
+      "voucherCode": "z4DFPC",
+      "status": false
+    },
+    {
+      "id": 5,
+      "voucherCode": "clP7ik",
+      "status": true
+    },
+    {
+      "id": 6,
+      "voucherCode": "0iJUNG",
+      "status": false
+    },
+    {
+      "id": 7,
+      "voucherCode": "Cb6g7P",
+      "status": false
+    },
+    {
+      "id": 8,
+      "voucherCode": "M3fXYS",
+      "status": false
+    },
+    {
+      "id": 9,
+      "voucherCode": "Is1oDc",
+      "status": false
+    },
+    {
+      "id": 10,
+      "voucherCode": "6KNSoi",
+      "status": false
+    },
+    {
+      "id": 11,
+      "voucherCode": "9s6fFs",
+      "status": false
+    },
+    {
+      "id": 12,
+      "voucherCode": "uMI5nd",
+      "status": false
+    },
+    {
+      "id": 13,
+      "voucherCode": "gSTb5h",
+      "status": false
+    },
+    {
+      "id": 14,
+      "voucherCode": "i348zN",
+      "status": false
+    },
+    {
+      "id": 15,
+      "voucherCode": "6M24Ym",
+      "status": false
+    },
+    {
+      "id": 16,
+      "voucherCode": "e6b3xvc",
+      "status": false
+    },
+    {
+      "id": 17,
+      "voucherCode": "OvYgzQ",
+      "status": false
+    },
+    {
+      "id": 18,
+      "voucherCode": "560O7I",
+      "status": true
+    },
+    {
+      "id": 19,
+      "voucherCode": "XGDeIc",
+      "status": false
+    },
+    {
+      "id": 20,
+      "voucherCode": "hQtcAS",
+      "status": false
+    },
+    {
+      "id": 21,
+      "voucherCode": "A6umec",
+      "status": false
+    },
+    {
+      "id": 22,
+      "voucherCode": "qV5DyH",
+      "status": false
+    },
+    {
+      "id": 23,
+      "voucherCode": "wcSUpp",
+      "status": false
+    },
+    {
+      "id": 24,
+      "voucherCode": "iSlFid",
+      "status": false
+    },
+    {
+      "id": 25,
+      "voucherCode": "oY7S3W",
+      "status": false
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "fname": "anmol",
+      "lname": "chaware",
+      "email": "anmol@gmail.com",
+      "dob": "1993-11-22",
+      "contact": 8329324580,
+      "gender": "male",
+      "organization": "hematite",
+      "branch": null,
+      "pnrNo": null
+    },
+    {
+      "id": 2,
+      "fname": "rupesh",
+      "lname": "bhagat",
+      "email": "rupesh@gmail.com",
+      "dob": "1992-11-29",
+      "contact": 8329324580,
+      "gender": "male",
+      "organization": "lighthouse",
+      "branch": "hadapsar",
+      "pnrNo": null
+    },
+    {
+      "id": 3,
+      "fname": "pachsheel",
+      "lname": "wankhede",
+      "email": "pachsheel@gmail.com",
+      "dob": "1991-06-06",
+      "contact": 8329324580,
+      "gender": "male",
+      "organization": "cdac",
+      "branch": "cdac",
+      "pnrNo": 1001
+    },
+    {
+      "fname": "akshay",
+      "lname": "khatarkar",
+      "email": "ak@gmail.com",
+      "dob": "1993-10-27",
+      "contact": "8888888888",
+      "gender": "male",
+      "organization": "lighthouse",
+      "branch": "bibvewadi",
+      "pnrNo": null,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "fname": "sonu",
+      "lname": "chandan",
+      "email": "sonu@gmail.com",
+      "dob": "1994-09-19",
+      "contact": "7854785478",
+      "gender": "female",
+      "organization": "cdac",
+      "branch": null,
+      "pnrNo": "1234"
+    }
+  ]
+}

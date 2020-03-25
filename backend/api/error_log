@@ -1,0 +1,41 @@
+[03-Feb-2020 13:05:10 Asia/Calcutta] PHP Notice:  Undefined variable: where in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 37
+[03-Feb-2020 07:37:34 UTC] PHP Notice:  Undefined variable: conn in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:37:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php:48
+Stack trace:
+#0 /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php(12): doGet()
+#1 {main}
+  thrown in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:37:49 UTC] PHP Notice:  Undefined variable: conn in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:37:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php:48
+Stack trace:
+#0 /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php(12): doGet()
+#1 {main}
+  thrown in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:38:18 UTC] PHP Notice:  Undefined index: id in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 27
+[03-Feb-2020 07:38:18 UTC] PHP Notice:  Undefined variable: conn in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:38:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php:48
+Stack trace:
+#0 /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php(12): doGet()
+#1 {main}
+  thrown in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:38:24 UTC] PHP Notice:  Undefined index: id in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 27
+[03-Feb-2020 07:38:24 UTC] PHP Notice:  Undefined variable: conn in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:38:24 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php:48
+Stack trace:
+#0 /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php(12): doGet()
+#1 {main}
+  thrown in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:38:39 UTC] PHP Notice:  Undefined index: id in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 27
+[03-Feb-2020 07:38:39 UTC] PHP Notice:  Undefined variable: conn in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 07:38:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php:48
+Stack trace:
+#0 /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php(12): doGet()
+#1 {main}
+  thrown in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 48
+[03-Feb-2020 13:09:38 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 40
+[03-Feb-2020 13:09:44 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 40
+[03-Feb-2020 13:09:49 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 40
+[03-Feb-2020 13:15:10 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 39
+[03-Feb-2020 13:15:16 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 39
+[03-Feb-2020 13:15:23 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 39
+[03-Feb-2020 13:15:27 Asia/Calcutta] PHP Notice:  Trying to get property of non-object in /home/paragjo25/public_html/onlineQuiz/api/quizQuestion.php on line 39

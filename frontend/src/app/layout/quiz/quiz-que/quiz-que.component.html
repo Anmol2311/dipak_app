@@ -1,0 +1,171 @@
+<div style="margin-bottom: 100px;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="d-flex justify-content-between">
+      <!-- <h1>Hematite Infotech - Quiz</h1> -->
+      <h3 class="ml-2 d-flex align-items-center">
+        <mat-icon>account_circle</mat-icon>&nbsp;Welcome {{getStudentName() | titlecase}}
+      </h3>
+      <div class="d-flex align-items-center">
+        <h5 *ngIf="isQuiz" class="timer-text d-flex align-items-center">
+          <mat-icon>timer</mat-icon>:&nbsp;&nbsp;<span>{{clock}}</span>
+        </h5>
+        <span class="divider" *ngIf="isQuiz">|</span>
+        <button mat-button (click)="onLogout()" matTooltip="Logout">
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="container mt-5">
+
+    <mat-card class="example-card mx-auto" *ngIf="isVoucher">
+      <mat-card-content class="d-flex justify-content-center">
+        <mat-form-field class="example-form-field w-75 mt-4">
+          <input matInput type="text" placeholder="Enter Voucher Code" [formControl]="quizService.voucherCode"
+            autocomplete="off">
+          <button mat-button *ngIf="quizService.voucherCode.value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="quizService.voucherCode.reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="!quizService.voucherCode.valid && quizService.voucherCode.touched">
+            {{ getErrorVoucher() }}
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" [disabled]="quizService.voucherCode.invalid"
+          (click)="checkVoucher(quizService.voucherCode.value)">NEXT</button>
+      </mat-card-actions>
+    </mat-card><!-- ./voucher input -->
+
+    <mat-card class="example-card mx-auto" *ngIf="isExam">
+      <mat-card-content class="d-flex justify-content-center">
+        <mat-form-field class="example-form-field w-75 mt-4">
+          <mat-select placeholder="Exam" [formControl]="quizService.selectExam">
+            <mat-option value="null" [disabled]="'true'">Select</mat-option>
+            <ng-container *ngFor="let exam of exams">
+              <mat-option [value]="exam.examCode">{{ exam.examName | uppercase }}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error *ngIf="!quizService.selectExam.valid && quizService.selectExam.touched">
+            {{ getErrorSelectExam() }}
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" [disabled]="quizService.selectExam.invalid"
+          (click)="checkExam(quizService.selectExam.value)">NEXT</button>
+        <button mat-button color="primary" (click)="backVoucher()">BACK</button>
+      </mat-card-actions>
+    </mat-card><!-- ./exam input -->
+
+    <mat-card class="example-card mx-auto" *ngIf="isInstruction">
+      <mat-card-content>
+        <div class="d-flex justify-content-start">
+          <span class="sub-head mr-2">Total Question:</span>
+          <span>{{quizService.totalQuestion}}</span>
+        </div>
+        <div class="d-flex flex-column">
+          <span class="sub-head">Instructions:</span>
+          <ul>
+            <li>Each question carries 1 mark.</li>
+            <li>Multiple choice questions with only one valid answer.</li>
+            <li>Don`t use keyboard, back & forward button during exam.</li>
+            <li>Click on the "Start Quiz" button to start the test.</li>
+            <li>Your result will be displayed at the end of the test!</li>
+          </ul>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="startQuiz()" [disabled]="quizService.totalQuestion == 0">START
+          QUIZ</button>
+        <button mat-button color="primary" (click)="backExam()">BACK</button>
+      </mat-card-actions>
+    </mat-card><!-- ./exam instructions -->
+
+    <div *ngIf="isQuiz">
+      <form #quizQues="ngForm" novalidate>
+        <ng-container *ngFor="let ques of allQuestions; let i = index">
+          <mat-card class="mb-3 mt-3">
+            <mat-card-header>
+              <mat-card-title class="ques-text">Que {{i+1}}. {{ques.question}}</mat-card-title>
+              <mat-card-subtitle>Choose any one option</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-radio-group aria-label="Select an option" class="d-flex flex-column" [name]="ques.id"
+                [(ngModel)]="ques.selected">
+                <mat-radio-button [value]="options[0]">
+                  a) {{ ques.a }}
+                </mat-radio-button>
+                <mat-radio-button [value]="options[1]">
+                  b) {{ ques.b }}
+                </mat-radio-button>
+                <mat-radio-button [value]="options[2]">
+                  c) {{ ques.c }}
+                </mat-radio-button>
+                <mat-radio-button [value]="options[3]">
+                  d) {{ ques.d }}
+                </mat-radio-button>
+              </mat-radio-group>
+            </mat-card-content>
+          </mat-card><!-- ./quiz ques -->
+        </ng-container>
+      </form>
+      <button mat-button color="primary" (click)="submitTest()">SUBMIT QUIZ</button>
+    </div><!-- ./quiz form -->
+
+    <div *ngIf="isResult">
+      <mat-card class="example-card mx-auto">
+        <mat-card-header class="d-flex justify-content-center mt-3">
+          <mat-card-title>Quiz Result</mat-card-title>
+          <!-- <mat-icon *ngIf="totalPercent > 40">thumb_up_alt</mat-icon><mat-icon *ngIf="totalPercent < 40">thumb_down_alt</mat-icon> -->
+        </mat-card-header>
+        <mat-card-content>
+          <div><span class="sub-head">Total Answered:</span>&nbsp;&nbsp;<span
+              class="sub-head-data">{{totalAnswered}}</span></div>
+          <div><span class="sub-head">Right Answer:</span>&nbsp;&nbsp;<span class="sub-head-data">{{rightAnswer}}</span>
+          </div>
+          <div><span class="sub-head">Result Status:</span>&nbsp;&nbsp;<span class="sub-head-data"
+              [ngClass]="totalPercent > 40 ? 'text-success' : 'text-danger'">{{totalPercent > 40 ? 'Pass' : 'Fail'}}</span>
+
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="showAnswer()">SHOW ANSWERS</button>
+          <button mat-button color="primary" (click)="onLogout()">LOGOUT</button>
+        </mat-card-actions>
+      </mat-card>
+    </div><!-- ./quiz result -->
+
+
+    <div *ngIf="isCheckAns">
+      <h4>Check Answers</h4>
+      <ng-container *ngFor="let ques of allQuestions; let i = index">
+        <mat-card class="mb-3 mt-3"
+          [style.color]="!ques.selected? '#ffc107' : ques.selected == ques.answer ? 'green': 'red'">
+          <mat-card-header>
+            <mat-card-title class="ques-text">Que {{i+1}}. {{ques.question}}</mat-card-title>
+            <!-- <mat-card-subtitle>Choose any one option</mat-card-subtitle> -->
+          </mat-card-header>
+          <mat-card-content>
+            <div>Your Answer: {{ques[ques.selected]}}</div>
+            <div>Right Answer: {{ques.answer}}) {{ques[ques.answer]}}</div>
+          </mat-card-content>
+        </mat-card><!-- ./check correct answer -->
+      </ng-container>
+      <button mat-button color="primary" (click)="onLogout()">LOGOUT</button>
+    </div>
+
+  </div>
+  <!-- footer  -->
+  <mat-toolbar color="primary" class="bottom-footer">
+    <mat-toolbar-row class="d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <h3 class="text-footer"> &copy; 2017-{{currentYear}} Hematite Infotech, All Rights Reserved.</h3>
+      </div>
+      <div class="d-flex align-items-center">
+        <h3 class="text-footer">Design & Developed By: Anmol Chaware</h3>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

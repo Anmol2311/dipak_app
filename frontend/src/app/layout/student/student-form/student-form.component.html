@@ -1,0 +1,125 @@
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+  <span>{{studentService.form.controls['id'].value?"Modify Student":"Student Registration"}}</span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="container mt-3">
+
+  <form [formGroup]="studentService.form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="example-container">
+      <!-- primary id input -->
+      <input type="hidden" formControlName="id">
+
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <!-- firstName input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="First Name" formControlName="fname">
+            <mat-hint>Eg. John</mat-hint>
+            <mat-error
+              *ngIf="!studentService.form.controls['fname'].valid && studentService.form.controls['fname'].touched">
+              {{ getErrorFirstName() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- lastName input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Last Name" formControlName="lname">
+            <mat-hint>Eg. Doe</mat-hint>
+            <mat-error
+              *ngIf="!studentService.form.controls['lname'].valid && studentService.form.controls['lname'].touched">
+              {{ getErrorLastName() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- email input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Email Address" #email formControlName="email" (blur)="checkEmail($event)">
+            <mat-hint>Eg. example@example.com</mat-hint>
+            <mat-error
+              *ngIf="invalidEmail == true || !studentService.form.controls['email'].valid && studentService.form.controls['email'].touched">
+              {{ getErrorEmail() }}
+            </mat-error>
+          </mat-form-field>
+          <span [ngStyle]="{'color':'#f44336','font-size':'14px'}" *ngIf="invalidEmail">
+              Email Already Exist !
+            </span>
+          <!-- contact input -->
+          <mat-form-field class="form-element">
+            <span matPrefix>+91 &nbsp;</span>
+            <input matInput placeholder="Contact" formControlName="contact">
+            <mat-hint>Eg. 8888888888</mat-hint>
+            <mat-error
+              *ngIf="!studentService.form.controls['contact'].valid && studentService.form.controls['contact'].touched">
+              {{ getErrorContact() }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <!-- dob input -->
+          <mat-form-field style="margin-top: 5px;">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a DOB" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint>Eg. MM/DD/YYYY</mat-hint>
+          </mat-form-field>
+
+          <!-- gender input -->
+          <div class="d-flex form-element mt-3 flex-column">
+            <label class="label-text">Select Gender:<sup class="text-danger font-weight-bold">*</sup> </label>
+            <div class="d-flex flex-column">
+              <mat-radio-group aria-label="Select an option" formControlName="gender">
+                <ng-container *ngFor="let g of gender">
+                  <mat-radio-button [value]="g">{{ g | titlecase }}</mat-radio-button>
+                </ng-container>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <!-- organization input -->
+          <div class="d-flex flex-column form-element">
+            <label class="label-text">Select Organization:<sup class="text-danger font-weight-bold">*</sup> </label>
+            <div class="d-flex flex-column">
+              <mat-radio-group aria-label="Select an option" formControlName="organization">
+                <ng-container *ngFor="let orgn of organizations">
+                  <mat-radio-button [value]="orgn" (click)="orgsDetails(orgn)">{{ orgn | titlecase }}</mat-radio-button>
+                </ng-container>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <!-- branch input -->
+          <mat-form-field class="form-element" style="margin-top: 3px;"
+            *ngIf="isBranch || studentService.form.controls['organization'].value == 'lighthouse'">
+            <mat-select placeholder="Select Branch" class="fs-14" formControlName="branch">
+              <mat-option value="null" [disabled]="'true'">Select</mat-option>
+              <ng-container *ngFor="let b of branches">
+                <mat-option [value]="b">{{ b | titlecase }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- pnrNo input -->
+          <mat-form-field class="form-element" style="margin-top: 3px;"
+            *ngIf="isPNR || studentService.form.controls['organization'].value == 'cdac'">
+            <input matInput placeholder="PNR Number" formControlName="pnrNo">
+            <mat-error
+              *ngIf="!studentService.form.controls['pnrNo'].valid && studentService.form.controls['pnrNo'].touched">
+              {{ getErrorPnrNo() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- submit & reset button -->
+          <div class="button-row">
+            <button mat-raised-button class="mr-10" color="primary" type="submit" [disabled]="studentService.form.invalid && !studentService.form.controls['id'].value">{{studentService.form.controls['id'].value?"Update":"Submit"}}</button>
+            <!-- <button mat-raised-button class="mr-10" color="warn" (click)="onClear()"
+              [hidden]="studentService.form.controls['id'].value">Clear</button> -->
+            <a mat-flat-button class="mr-10" (click)="onClear()"
+            [hidden]="studentService.form.controls['id'].value">Clear</a>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </form>
+</div>

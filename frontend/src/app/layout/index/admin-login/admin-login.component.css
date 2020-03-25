@@ -1,0 +1,22 @@
+.login-card {
+    max-width: 400px;
+}
+
+.input-wrapper {
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.form-element {
+    padding: 5px 0px 15px 2px;
+}
+
+.bottom-footer{
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+
+.text-footer{
+    font-size: 16px;
+}

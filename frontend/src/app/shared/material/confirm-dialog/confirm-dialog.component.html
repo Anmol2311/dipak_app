@@ -1,0 +1,10 @@
+<div class="d-flex flex-column" style="padding:24px;">
+  <!-- <div class="content-container"> -->
+  <mat-icon id="close-icon" (click)="closeDialog()" class="align-self-end">close</mat-icon>
+  <span class="content-span full-width" class="align-self-center mt-3">{{data.message}}</span>
+  <!-- </div> -->
+</div>
+<div class="d-flex justify-content-around mt-3">
+  <button mat-raised-button color="primary" id="yes-button" class="confirm-btn" [mat-dialog-close]="true">YES</button>
+  <button mat-raised-button color="warn" id="no-button" class="confirm-btn" [mat-dialog-close]="false">NO</button>
+</div>

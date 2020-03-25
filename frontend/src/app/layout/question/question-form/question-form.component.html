@@ -1,0 +1,83 @@
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+  <span>{{questionService.form.controls['id'].value?"Modify Question":"New Question"}}</span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="container mt-3">
+
+  <form [formGroup]="questionService.form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="example-container">
+      <!-- primary id input -->
+      <input type="hidden" formControlName="id">
+
+      <!-- exam code input -->
+      <input type="hidden" formControlName="examCode">
+
+      <!-- Question input -->
+      <mat-form-field class="form-element">
+        <textarea matInput placeholder="Enter a question" formControlName="question"></textarea>
+        <mat-error
+          *ngIf="!questionService.form.controls['question'].valid && questionService.form.controls['question'].touched">
+          {{ getErrorQuestion() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <!-- option a input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Option a" formControlName="a">
+            <mat-error *ngIf="!questionService.form.controls['a'].valid && questionService.form.controls['a'].touched">
+              {{ getErrorOptionA() }}
+            </mat-error>
+          </mat-form-field>
+          <!-- option c input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Option c" formControlName="c">
+            <mat-error *ngIf="!questionService.form.controls['c'].valid && questionService.form.controls['c'].touched">
+              {{ getErrorOptionC() }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <!-- option b input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Option b" formControlName="b">
+            <mat-error *ngIf="!questionService.form.controls['b'].valid && questionService.form.controls['b'].touched">
+              {{ getErrorOptionB() }}
+            </mat-error>
+          </mat-form-field>
+          <!-- option d input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Option d" formControlName="d">
+            <mat-error *ngIf="!questionService.form.controls['d'].valid && questionService.form.controls['d'].touched">
+              {{ getErrorOptionD() }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <!-- answer input -->
+      <div class="d-flex form-element answer-wrapper">
+        <label class="label-text">Select Answer:<sup class="text-danger font-weight-bold">*</sup> </label>
+        <div class="d-flex flex-column">
+          <mat-radio-group aria-label="Select an option" formControlName="answer">
+            <ng-container *ngFor="let ans of answers">
+              <mat-radio-button [value]="ans" class="px-20">{{ ans }}</mat-radio-button>
+            </ng-container>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <!-- submit & reset button -->
+      <div class="button-row">
+        <button mat-raised-button class="mr-10" color="primary" type="submit"
+          [disabled]="questionService.form.invalid">{{questionService.form.controls['id'].value?"Update":"Add"}}</button>
+        <button mat-flat-button class="mr-10" (click)="onClear()"
+          [hidden]="questionService.form.controls['id'].value">Clear</button>
+      </div>
+    </div>
+  </form>
+  <!-- <h4>{{ userService.form.value | json }}</h4> -->
+</div>

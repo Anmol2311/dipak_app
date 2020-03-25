@@ -1,0 +1,92 @@
+<div class="container mt-5">
+
+  <div class="search-div">
+    <button mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon> Create
+    </button>
+    <mat-form-field class="example-form-field" floatLabel="never">
+      <input matInput matInput placeholder="Search..." [(ngModel)]="searchKey" autocomplete="off"
+        (keyup)="applyFilter()" />
+      <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>Angular Material CRUD -> User Module</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-table [dataSource]="userData">
+
+      <!-- Sr. No. column -->
+      <ng-container matColumnDef="srNo">
+        <mat-header-cell *matHeaderCellDef>Sr. No.</mat-header-cell>
+        <mat-cell *matCellDef="let i = index">{{ i+1+"."  }}</mat-cell>
+      </ng-container>
+
+      <!-- fullname column -->
+      <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.firstName+" "+element.lastName | titlecase }}</mat-cell>
+      </ng-container>
+
+      <!-- email column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.emailId }}</mat-cell>
+      </ng-container>
+
+      <!-- password column -->
+      <ng-container matColumnDef="password">
+        <mat-header-cell *matHeaderCellDef>Password</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.password }}</mat-cell>
+      </ng-container>
+
+      <!-- contact column -->
+      <ng-container matColumnDef="contact">
+        <mat-header-cell *matHeaderCellDef>Contact</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.contact }}</mat-cell>
+      </ng-container>
+
+      <!-- gender column -->
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.gender }}</mat-cell>
+      </ng-container>
+
+      <!-- role column -->
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.role | titlecase }}</mat-cell>
+      </ng-container>
+
+      <!-- action column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>launch</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(row.id)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- empty data column -->
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef>No Data...</mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-footer-row *matFooterRowDef="['noData']"
+        [ngClass]="{'hide': !(listData!=null && listData.data.length == 0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

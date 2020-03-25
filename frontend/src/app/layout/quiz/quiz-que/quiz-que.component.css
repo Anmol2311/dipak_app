@@ -1,0 +1,31 @@
+.example-card {
+    max-width: 500px;
+}
+
+.ques-text{
+    font-size: 16px;
+}
+
+.sub-head{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sub-head-data{
+    font-size: 16px;
+    /* font-weight: 500; */
+}
+
+.timer-text{
+    font-size: 18px;
+}
+
+.bottom-footer{
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+
+.text-footer{
+    font-size: 16px;
+}

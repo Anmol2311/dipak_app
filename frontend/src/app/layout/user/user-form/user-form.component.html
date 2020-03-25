@@ -1,0 +1,100 @@
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+  <span>{{userService.form.controls['id'].value?"Modify User":"Create User"}}</span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container mt-3">
+  <form [formGroup]="userService.form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="example-container">
+      <!-- primary id input -->
+      <input type="hidden" formControlName="id">
+      <mat-horizontal-stepper linear #stepper>
+        <mat-step label="Step 1">
+          <ng-template matStepLabel>Personal Details</ng-template>
+          <mat-form-field class="form-element">
+            <input matInput placeholder="First Name" formControlName="firstName" required />
+            <mat-hint>Eg. John</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['firstName'].valid && userService.form.controls['firstName'].touched">
+              {{ getErrorFirstName() }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Last Name" formControlName="lastName" required />
+            <mat-hint>Eg. Doe</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['lastName'].valid && userService.form.controls['lastName'].touched">
+              {{ getErrorLastName() }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-element">
+            <span matPrefix>+91 &nbsp;</span>
+            <input matInput placeholder="Contact" formControlName="contact" required />
+            <mat-hint>Eg. 8888888888</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['contact'].valid && userService.form.controls['contact'].touched">
+              {{ getErrorContact() }}
+            </mat-error>
+          </mat-form-field>
+          <div class="d-flex flex-column form-element">
+            <label class="label-text">Select Gender:<sup class="text-danger font-weight-bold">*</sup> </label>
+            <div class="">
+              <mat-radio-group aria-label="Select an option" formControlName="gender">
+                <ng-container *ngFor="let g of gender">
+                  <mat-radio-button [value]="g">{{ g | titlecase }}</mat-radio-button>
+                </ng-container>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mt-3">
+            <button mat-flat-button color="primary" matStepperNext type="button">Next</button>
+          </div>
+        </mat-step>
+        <mat-step label="Step 2">
+          <ng-template matStepLabel>Account Details</ng-template>
+          <!-- emailId input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Enter Email/Username" formControlName="emailId" required />
+            <mat-hint>Eg. example@example.com</mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['emailId'].valid && userService.form.controls['emailId'].touched">
+              {{ getErrorEmail() }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- password input -->
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" formControlName="password"
+              required />
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-hint>Choose a password of at least 6 character, one number, symbol, uppercase & lowercase letter.
+            </mat-hint>
+            <mat-error
+              *ngIf="!userService.form.controls['password'].valid && userService.form.controls['password'].touched">
+              {{ getErrorPassword() }}
+            </mat-error>
+          </mat-form-field>
+          <!-- role input -->
+          <mat-form-field class="form-element">
+            <mat-select placeholder="Select Role" formControlName="role">
+              <mat-option value="null" [disabled]="'true'">Select</mat-option>
+              <ng-container *ngFor="let role of roles">
+                <mat-option [value]="role">{{ role | titlecase }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="!userService.form.controls['role'].valid && userService.form.controls['role'].touched">
+              {{ getErrorRole() }}
+            </mat-error>
+          </mat-form-field>
+          <div class="d-flex justify-content-end mt-3">
+            <button mat-flat-button color="primary" matStepperPrevious class="mr-3">Back</button>
+            <button mat-raised-button class="mr-10" color="primary" type="submit"
+              [disabled]="userService.form.invalid">{{userService.form.controls['id'].value?"Update":"Submit"}}</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </form>
+</div>

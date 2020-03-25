@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+  <span>Create Exam</span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="container mt-3">
+  <form [formGroup]="examService.form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="example-container">
+
+      <!-- examName input -->
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Exam Name" formControlName="examName">
+        <mat-error
+          *ngIf="!examService.form.controls['examName'].valid && examService.form.controls['examName'].touched">
+          {{ getErrorExamName() }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- status input -->
+      <div class="d-flex form-element">
+        <label class="label-text">Status:<sup class="text-danger font-weight-bold">*</sup> </label>
+        <div class="d-flex flex-column">
+          <mat-radio-group aria-label="Select an option" formControlName="examStatus">
+            <mat-radio-button [value]="true">Enabled</mat-radio-button>
+            <mat-radio-button [value]="false">Disabled</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <!-- submit & reset button -->
+      <div class="button-row">
+        <button mat-raised-button class="mr-10" color="primary" type="submit"
+          [disabled]="examService.form.invalid">Add</button>
+        <!-- <button mat-raised-button class="mr-10" color="warn" (click)="onClear()">Clear</button> -->
+      </div>
+    </div>
+  </form>
+</div>

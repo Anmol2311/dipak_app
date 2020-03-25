@@ -1,0 +1,51 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container>* {
+    width: 100%;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.label-text {
+    margin-right: 10px;
+}
+
+.button-row{
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-row button {
+    margin-right: 10px;
+}
+
+.button-row button:focus {
+    outline: unset;
+}
+
+.mat-stroked-button:not([disabled]) {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.btn-dialog-close:hover {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.form-element {
+    padding: 5px 0px 15px 2px;
+}
+
+.mat-radio-button.px-20{
+    padding: 0px 15px;
+}
+.answer-wrapper{
+    margin-top: -70px !important;
+}
+
+

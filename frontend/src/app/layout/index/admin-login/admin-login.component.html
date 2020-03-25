@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="d-flex justify-content-start">
+    <!-- <span>Third Line</span> -->
+    <!-- <button mat-icon-button (click)="snavToggle()">
+          <mat-icon>menu</mat-icon>
+      </button> -->
+    <h1>Online Quiz</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
+
+<div class="d-flex justify-content-center mt-5">
+  <mat-card class="login-card">
+    <form [formGroup]="userService.loginForm" (ngSubmit)="onAdminLogin()" autocomplete="off">
+      <mat-card-header class="d-flex justify-content-center mt-3">
+        <mat-card-title>{{'Admin Login' | titlecase}}</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field class="input-wrapper">
+          <input matInput placeholder="Enter Email/Username" formControlName="emailId">
+          <!-- <mat-hint>Eg. example@example.com</mat-hint> -->
+          <mat-error
+            *ngIf="!userService.loginForm.controls['emailId'].valid && userService.loginForm.controls['emailId'].touched">
+            {{ getErrorAdminEmail() }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-wrapper">
+          <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <!-- <mat-hint>Choose a password of at least 6 character, one number, symbol, uppercase & lowercase
+                  letter.
+              </mat-hint> -->
+          <mat-error
+            *ngIf="!userService.loginForm.controls['password'].valid && userService.loginForm.controls['password'].touched">
+            {{ getErrorPassword() }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-wrapper">
+          <mat-select placeholder="Select Role" formControlName="role">
+            <mat-option value="null" [disabled]="'true'">Select</mat-option>
+            <ng-container *ngFor="let role of roles">
+              <mat-option [value]="role">{{ role | titlecase }}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error
+            *ngIf="!userService.loginForm.controls['role'].valid && userService.loginForm.controls['role'].touched">
+            {{ getErrorRole() }}
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions class="d-flex justify-content-between btn-wrapper">
+        <button mat-flat-button color="primary" type="submit">Login</button>
+        <!-- <button mat-button type="button" (click)="onCreate()" color="primary">New Student ?</button> -->
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
+
+<!-- footer  -->
+<mat-toolbar color="primary" class="bottom-footer">
+  <mat-toolbar-row class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <!-- <h3 class="text-footer"> &copy; 2017-{{currentYear}} Hematite Infotech, All Rights Reserved.</h3> -->
+    </div>
+    <div class="d-flex align-items-center">
+      <h3 class="text-footer">Agile 7 Spring 2020</h3>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

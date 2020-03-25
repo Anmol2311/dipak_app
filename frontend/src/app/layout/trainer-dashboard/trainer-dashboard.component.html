@@ -1,0 +1,82 @@
+<!-- header -->
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <button mat-icon-button (click)="snavToggle()">
+        <mat-icon>list</mat-icon>
+      </button>
+      <h1>User Dashboard</h1>
+    </div>
+    <div class="d-flex align-items-center">
+      <mat-icon>account_circle</mat-icon>
+      <h3 class="ml-2">Welcome {{getUserName() | titlecase}}</h3>
+      <span class="divider">|</span>
+      <button mat-button (click)="onLogout()" matTooltip="Logout">
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
+
+<mat-drawer-container class="wrapper">
+  <mat-drawer #snav [mode]="'side'" [ngStyle]="mySidebar">
+    <mat-list>
+      <!-- <mat-list-item>
+          <button mat-button color="primary" class="nav-btn" routerLink="user" routerLinkActive="active">
+            <span>Manage User</span>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </mat-list-item> -->
+      <mat-list-item>
+        <button mat-button color="primary" class="nav-btn" routerLink="student" routerLinkActive="active">
+          <span>Manage Student</span>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button color="primary" class="nav-btn" routerLink="exam" routerLinkActive="active">
+          <span>Manage Exam</span>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button color="primary" class="nav-btn" routerLink="question" routerLinkActive="active">
+          <span>Manage Question</span>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button color="primary" class="nav-btn" routerLink="voucher" routerLinkActive="active">
+          <span> Manage Voucher</span>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button color="primary" class="nav-btn" routerLink="result" routerLinkActive="active">
+          <span>Manage Result</span>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content [ngStyle]="myStyle">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<!-- footer  -->
+<mat-toolbar color="primary" class="bottom-footer">
+  <mat-toolbar-row class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <!-- <h3 class="text-footer"> &copy; 2017-{{currentYear}} Hematite Infotech, All Rights Reserved.</h3> -->
+    </div>
+    <div class="d-flex align-items-center">
+      <h3 class="text-footer">Agile 7 Spring 2020</h3>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
